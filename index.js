@@ -96,8 +96,7 @@ app.get('/api/getSocialMediaLinks', async (req, res) => {
 
 app.get('/api/getFriends', async (req, res) => {
   try {
-    // Fetch the list of friends for the logged-in user
-    // You can get this information from your database based on the user's ID
+
     const user = await User.findOne().sort({ _id: -1 }).limit(1);
 
     if (!user) {
@@ -153,17 +152,15 @@ app.post('/api/addFriend', async (req, res) => {
   }
 
   try {
-    // Use the default user ID
+
     const loggedInUserId = req.loggedInUserId;
 
-    // Check if the friend already exists for the logged-in user
     const existingFriend = await Friend.findOne({ name: friendName, userId: loggedInUserId });
 
     if (existingFriend) {
       return res.status(400).json({ error: 'Friend already exists' });
     }
 
-    // Create a new friend and associate it with the logged-in user
     const newFriend = await Friend.create({ name: friendName, userId: loggedInUserId });
 
     res.status(201).json({ message: 'Friend added successfully', friend: newFriend });
@@ -173,7 +170,6 @@ app.post('/api/addFriend', async (req, res) => {
   }
 });
 
-// Add this route to your backend code
 app.delete('/api/deleteMessage/:id', async (req, res) => {
   const messageId = req.params.id;
 
@@ -252,7 +248,6 @@ app.post('/api/addSocialMediaLink', async (req, res) => {
   }
 });
 
-// Add this route to your backend code
 app.post('/api/addNews', async (req, res) => {
   const { title, content } = req.body;
 
@@ -269,7 +264,6 @@ app.post('/api/addNews', async (req, res) => {
   }
 });
 
-// Add this route to your backend code
 app.delete('/api/deleteNews/:id', async (req, res) => {
   const newsId = req.params.id;
 
