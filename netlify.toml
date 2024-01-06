@@ -1,0 +1,4 @@
+[build]
+  base = "/"
+  command = "node index.js"  # Adjust this based on your backend start command
+  publish = ""  # Adjust this if needed, based on your project structure
